@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  apisix:
+    image: apache/apisix:3.3.0-debian
+    volumes:
+      - ./apisix/config.yml:/usr/local/apisix/conf/config.yaml:ro
+      - ./apisix/apisix.yml:/usr/local/apisix/conf/apisix.yaml:ro
+    ports:
+      - "9080:9080"
+    depends_on:
+      - webapp1
+      - webapp2
+  webapp1:
+    build: ./webapp
+    hostname: webapp1
+  webapp2:
+    build: ./webapp
+    hostname: webapp2

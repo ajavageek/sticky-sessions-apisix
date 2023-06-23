@@ -1,0 +1,10 @@
+routes:
+  - uri: /*
+    upstream:
+      nodes:
+        "webapp1:8080": 1
+        "webapp2:8080": 1
+      type: chash
+      hash_on: cookie
+      key: cookie_JSESSIONID
+#END
